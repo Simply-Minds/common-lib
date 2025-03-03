@@ -1,28 +1,31 @@
 package com.simplyminds.common.specification.impl;
 
-import com.simplyminds.common.specification.impl.SearchCriteria;
+
 import com.simplyminds.common.specification.SpecificationHelper;
+import com.simplyminds.common.specification.impl.SpecificationHelperImpl;
+import com.simplyminds.common.specification.impl.*;
 import com.simplyminds.common.dto.SpecificationResponseDto;
 import com.simplyminds.common.enums.SearchParameters;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
+@Service
 public class GenericSpecification<T> implements Specification<T> {
     private static final Logger logger = Logger.getLogger(GenericSpecification.class.getName());
 
     private final SearchCriteria searchCriteria;
     // we will set it here so that no need to send explicitly the source entity .
     private Class<?> targetEntity;
-
-    SpecificationHelper specificationHelper = new SpecificationHelperImpl();
-
+    private final SpecificationHelper specificationHelper;
 
    private String fieldName;
     private String field;
 
-    public GenericSpecification(SearchCriteria searchCriteria1) {
+    public GenericSpecification(SearchCriteria searchCriteria1, SpecificationHelper specificationHelper) {
         this.searchCriteria = searchCriteria1;
+        this.specificationHelper = specificationHelper;
     }
 
     @Override

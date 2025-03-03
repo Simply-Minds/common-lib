@@ -3,6 +3,8 @@ package com.simplyminds.common.specification;
 import com.simplyminds.common.dto.SpecificationResponseDto;
 import jakarta.persistence.criteria.Root;
 
+
+
 public interface SpecificationHelper {
     /**
      * We need a more precise and optimisation in our specification class.

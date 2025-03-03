@@ -1,5 +1,6 @@
 package com.simplyminds.common.service.impl;
 
+import com.simplyminds.common.exception.ResourceAlreadyExistException;
 import com.simplyminds.common.specification.SpecificationHelper;
 import com.simplyminds.common.specification.impl.GenericSpecification;
 import com.simplyminds.common.specification.impl.SearchCriteria;
@@ -17,7 +18,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 
 import java.util.logging.Logger;
@@ -34,7 +34,7 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
     protected final R repository;
 
 
-    @Autowired
+
     private SpecificationHelper specificationHelper;
 
     public GenericServiceImpl(R repository) {
@@ -67,7 +67,9 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
         if (id == null || id <= 0) {
             throw new BadRequestException(ErrorCode.BAD0001.getCode(), ErrorCode.BAD0001.getMessage());
         }
-         repository.findById(Long.valueOf(id))
+
+
+        repository.findById(Long.valueOf(id))
                 .orElseThrow(() -> new NotFoundException(ErrorCode.ERR404.getCode(), ErrorCode.ERR404.getMessage()));
 
         return repository.save(object);
@@ -116,12 +118,10 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
             logger.info("Parsed SearchCriteria: " + searchCriteria);
             // Step 6. send the searchCriteria object to the GenericSpecification
 
-            GenericSpecification<T> genericSpecification = new GenericSpecification<>(searchCriteria);
+            GenericSpecification<T> genericSpecification = new GenericSpecification<>(searchCriteria,specificationHelper);
 
             // Step 7. now adding the query conditions to specifications
             specification = specification==null?Specification.where(genericSpecification):specification.and(genericSpecification);
-
-
         }
         // step 8. call the pagination logic methode with specification query that were generated.
         logger.info("Final Specification ready for querying.");
