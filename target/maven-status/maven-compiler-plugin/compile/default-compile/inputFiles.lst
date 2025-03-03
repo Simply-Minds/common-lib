@@ -1,0 +1,14 @@
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\dto\ResponseDto.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\dto\SpecificationResponseDto.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\enums\ErrorCode.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\enums\SearchParameters.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\exception\BadRequestException.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\exception\handler\GlobalExceptionHandler.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\exception\NotFoundException.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\exception\ResourceAlreadyExistException.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\service\GenericService.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\service\impl\GenericServiceImpl.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\specification\impl\GenericSpecification.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\specification\impl\SearchCriteria.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\specification\impl\SpecificationHelperImpl.java
+C:\Users\solan\Desktop\github projects\common-lib\src\main\java\com\simplyminds\common\specification\SpecificationHelper.java

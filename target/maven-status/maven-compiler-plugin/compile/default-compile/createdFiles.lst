@@ -1,0 +1,14 @@
+com\simplyminds\common\enums\ErrorCode.class
+com\simplyminds\common\specification\impl\SpecificationHelperImpl.class
+com\simplyminds\common\specification\impl\SearchCriteria.class
+com\simplyminds\common\dto\ResponseDto.class
+com\simplyminds\common\exception\handler\GlobalExceptionHandler.class
+com\simplyminds\common\service\impl\GenericServiceImpl.class
+com\simplyminds\common\dto\SpecificationResponseDto.class
+com\simplyminds\common\exception\NotFoundException.class
+com\simplyminds\common\specification\impl\GenericSpecification.class
+com\simplyminds\common\specification\SpecificationHelper.class
+com\simplyminds\common\exception\ResourceAlreadyExistException.class
+com\simplyminds\common\service\GenericService.class
+com\simplyminds\common\enums\SearchParameters.class
+com\simplyminds\common\exception\BadRequestException.class
