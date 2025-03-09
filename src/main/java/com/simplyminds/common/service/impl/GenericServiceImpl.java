@@ -1,6 +1,5 @@
 package com.simplyminds.common.service.impl;
 
-import com.simplyminds.common.exception.ResourceAlreadyExistException;
 import com.simplyminds.common.specification.SpecificationHelper;
 import com.simplyminds.common.specification.impl.GenericSpecification;
 import com.simplyminds.common.specification.impl.SearchCriteria;
@@ -9,7 +8,7 @@ import com.simplyminds.common.exception.BadRequestException;
 import com.simplyminds.common.exception.NotFoundException;
 import com.simplyminds.common.service.GenericService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -42,15 +41,18 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
     }
 
     @Override
-    public boolean DeleteObject(Integer id) {
+    public void deleteObject(Integer id) {
+        // Validate ID
         if (id == null || id <= 0) {
             throw new BadRequestException(ErrorCode.BAD0001.getCode(), ErrorCode.BAD0001.getMessage());
         }
-        if (!repository.existsById(id.longValue())) {
-             throw new NotFoundException(ErrorCode.ERR404.getCode(),ErrorCode.ERR404.getMessage());  // Ensure the ID exists before deletion
+
+        // Delete the object (repository.deleteById will throw EmptyResultDataAccessException if not found)
+        try {
+            repository.deleteById(id.longValue());
+        } catch (EmptyResultDataAccessException ex) {
+            throw new NotFoundException(ErrorCode.ERR404.getCode(), ErrorCode.ERR404.getMessage());
         }
-        repository.deleteById(id.longValue());
-        return true;
     }
 
     @Override
