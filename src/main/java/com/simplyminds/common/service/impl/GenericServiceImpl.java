@@ -49,6 +49,7 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
         } catch (EmptyResultDataAccessException ex) {
             throw new NotFoundException(ErrorCode.ERR404.getCode(),ErrorCode.ERR404.getMessage());
         }
+        logger.info("test");
     }
 
 
@@ -89,6 +90,7 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
         //and also have the type of entity of objects gonna came
         // so now we are some steps behind to create the query and finding the data.
         // and returning it.
+        // next test
 
         //step 1. combing filter with search.
         logger.info("Starting getListOfObjects method with parameters - Page: " + page + ", Size: " + size + ", Filter: " + filter + ", Search: " + search);
@@ -105,10 +107,10 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
         Matcher matcher = pattern.matcher(combinedQuery);
         // Step 4. find the groups and respectively generate the builder query.
         Specification<T> specification = null;
+        // test chnages
         while(matcher.find()){
 
-
-             // Step 5. create the searchCriteria
+            // Step 5. create the searchCriteria
             // and send it to the GenericSpecification to build the query.
 
             SearchCriteria searchCriteria = new SearchCriteria(

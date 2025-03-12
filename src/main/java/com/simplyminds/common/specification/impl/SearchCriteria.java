@@ -2,6 +2,7 @@ package com.simplyminds.common.specification.impl;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 /**
  * A Query criteria class that helps on recognizing the user query in a way that can be
@@ -13,6 +14,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
+@Component
 public class SearchCriteria {
     private String key;
     private String operation;
