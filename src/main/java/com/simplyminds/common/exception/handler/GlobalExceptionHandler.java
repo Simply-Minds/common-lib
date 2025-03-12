@@ -5,6 +5,8 @@ import com.simplyminds.common.exception.BadRequestException;
 import com.simplyminds.common.exception.NotFoundException;
 import com.simplyminds.common.exception.ResourceAlreadyExistException;
 import com.simplyminds.common.enums.ErrorCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     /**
      * Handle validation exceptions caused by invalid input.
      *
@@ -25,6 +29,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDto<String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        logger.info("MethodArgumentNotValidException : cought");
         String errorMessage = ex.getBindingResult().getFieldErrors()
                 .stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
@@ -41,6 +46,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ResponseDto<String>> handleBadRequestException(BadRequestException ex) {
+        logger.info("BadRequestException : cought");
         // Get error code and message from the exception or use default
         String errorCode = ex.getErrorCode() != null ? ex.getErrorCode() : ErrorCode.BAD0001.getCode();
         String message = ex.getMessage() != null ? ex.getMessage() : ErrorCode.BAD0001.getMessage();
@@ -56,6 +62,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ResourceAlreadyExistException.class)
     public ResponseEntity<ResponseDto<String>> handleResourceAlreadyExistException(ResourceAlreadyExistException ex) {
+        logger.info("ResourceAlreadyExistException : cought");
         // Get error code and message from the exception or use default
         String errorCode = ex.getErrorCode() != null ? ex.getErrorCode() : ErrorCode.RES0001.getCode();
         String message = ex.getMessage() != null ? ex.getMessage() : ErrorCode.RES0001.getMessage();
@@ -64,6 +71,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ResponseDto<String>> handleNotFoundException(NotFoundException ex) {
+        logger.info("NotFoundException : cought");
         // Get error code and message from the exception or use default
         String errorCode = ex.getErrorCode() != null ? ex.getErrorCode() : ErrorCode.ERR404.getCode();
         String message = ex.getMessage() != null ? ex.getMessage() : ErrorCode.ERR404.getMessage();
