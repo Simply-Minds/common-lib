@@ -117,7 +117,7 @@ public class GenericServiceImpl<T, R extends JpaRepository<T, Long> & JpaSpecifi
             logger.info("Parsed SearchCriteria: " + searchCriteria);
             // Step 6. send the searchCriteria object to the GenericSpecification
 
-            GenericSpecification<T> genericSpecification = new GenericSpecification<>(searchCriteria,specificationHelper);
+            GenericSpecification<T> genericSpecification = new GenericSpecification<>(searchCriteria);
 
             // Step 7. now adding the query conditions to specifications
             specification = specification==null?Specification.where(genericSpecification):specification.and(genericSpecification);

@@ -7,6 +7,7 @@ import com.simplyminds.common.specification.impl.*;
 import com.simplyminds.common.dto.SpecificationResponseDto;
 import com.simplyminds.common.enums.SearchParameters;
 import jakarta.persistence.criteria.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +16,17 @@ import java.util.logging.Logger;
 public class GenericSpecification<T> implements Specification<T> {
     private static final Logger logger = Logger.getLogger(GenericSpecification.class.getName());
 
+
     private final SearchCriteria searchCriteria;
     // we will set it here so that no need to send explicitly the source entity .
     private Class<?> targetEntity;
-    private final SpecificationHelper specificationHelper;
+    private final SpecificationHelper specificationHelper = new SpecificationHelperImpl();
 
    private String fieldName;
     private String field;
 
-    public GenericSpecification(SearchCriteria searchCriteria1, SpecificationHelper specificationHelper) {
-        this.searchCriteria = searchCriteria1;
-        this.specificationHelper = specificationHelper;
+    public GenericSpecification(SearchCriteria searchCriteria) {
+        this.searchCriteria = searchCriteria;
     }
 
     @Override
