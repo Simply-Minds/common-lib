@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
-@Service
+
 public class GenericSpecification<T> implements Specification<T> {
     private static final Logger logger = Logger.getLogger(GenericSpecification.class.getName());
 

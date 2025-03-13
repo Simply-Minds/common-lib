@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 @Setter
 @Getter
-@Component
 public class SearchCriteria {
     private String key;
     private String operation;
